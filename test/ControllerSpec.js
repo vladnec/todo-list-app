@@ -170,9 +170,10 @@ describe('controller', function () {
 			var todo = {id: 15, title: 'my todo', completed: false};
 			setUpModel([todo]);
 
-			subject.setView('completed');
+			subject.setView('');
+			view.trigger('toggleAll', {completed:true});
 
-			expect(view.render).toHaveBeenCalledWith('showEntries', [todo]);
+			expect(model.update).toHaveBeenCalledWith(15, {completed: true}, jasmine.any(Function));
 		});
 
 		it('should update the view', function () {
